@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/pages/my_home_page.dart';
+
+import 'package:news_app/views/my_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,5 +22,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
