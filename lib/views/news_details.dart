@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/app/size_config.dart';
 import 'package:news_app/models/news_model.dart';
 
+import '../widgets/web_view.dart';
+
 class NewsDetails extends StatelessWidget {
   const NewsDetails({super.key, required this.newsModel});
 
@@ -15,9 +17,7 @@ class NewsDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
+          onTap: () => Navigator.pop(context),
           child: Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
@@ -45,27 +45,17 @@ class NewsDetails extends StatelessWidget {
             SizedBox(height: SizeConfig.hs(6)),
 
             // Author
-            Row(
-              children: [
-                Expanded(child: SizedBox()),
-                Expanded(
-                  // Author
-                  child: Align(
-                    alignment: Alignment.centerRight, // bottom-right নয়, শুধু right
-                    child: Text(
-                      "- ${newsModel.author ?? "Unknown"}",
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: SizeConfig.fs(14),
-                        color: Colors.grey[700],
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-
-
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                "- ${newsModel.author ?? "Unknown"}",
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: SizeConfig.fs(14),
+                  color: Colors.grey[700],
+                  fontStyle: FontStyle.italic,
                 ),
-              ],
+              ),
             ),
             SizedBox(height: SizeConfig.hs(16)),
 
@@ -95,17 +85,36 @@ class NewsDetails extends StatelessWidget {
             // Content
             Text(
               newsModel.content ?? "No Content",
-              style: TextStyle(
-                fontSize: SizeConfig.fs(16),
-              ),
+              style: TextStyle(fontSize: SizeConfig.fs(16)),
             ),
             SizedBox(height: SizeConfig.hs(8)),
 
             // Description
             Text(
               newsModel.description ?? "No Description",
-              style: TextStyle(
-                fontSize: SizeConfig.fs(16),
+              style: TextStyle(fontSize: SizeConfig.fs(16)),
+            ),
+            SizedBox(height: SizeConfig.hs(16)),
+
+            // 🔹 Read Full News (TextButton, blue)
+            TextButton(
+              onPressed: () {
+                if (newsModel.url != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => NewsWebView( url:newsModel.url!,),
+                    ),
+                  );
+                }
+              },
+              child: const Text(
+                "Read Full News",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
@@ -114,3 +123,5 @@ class NewsDetails extends StatelessWidget {
     );
   }
 }
+
+

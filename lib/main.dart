@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:news_app/views/my_home_page.dart';
+import 'package:news_app/views/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(),
+      home: const SplashPage(),
     );
   }
 }

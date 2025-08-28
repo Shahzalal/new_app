@@ -5,38 +5,39 @@ class CategoryModel {
 }
 
 class NewsModel {
-  String? title;
-  String? description;
-  String? urlToImage;
-  String? author;
-  String? content;
+  final String? title;
+  final String? description;
+  final String? content;
+  final String? url;
+  final String? urlToImage;
+  final String? author;
 
   NewsModel({
     this.title,
     this.description,
+    this.content,
+    this.url,
     this.urlToImage,
     this.author,
-    this.content,
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     return NewsModel(
       title: json['title'],
       description: json['description'],
+      content: json['content'],
+      url: json['url'],
       urlToImage: json['urlToImage'],
       author: json['author'],
-      content: json['content'],
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'description': description,
-      'urlToImage': urlToImage,
-      'author': author,
-      'content': content,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+    "title": title,
+    "description": description,
+    "content": content,
+    "url": url,
+    "urlToImage": urlToImage,
+    "author": author,
+  };
 }
-
